@@ -1,4 +1,5 @@
 function convertToJson(){
-    let html = document.querySelector("#originalHTML").value
-    console.log(html)
+    const html = String(document.querySelector("#originalHTML").value);
+
+    document.querySelector("#jsonHTML").value = html
 }
