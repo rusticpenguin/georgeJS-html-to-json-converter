@@ -16,7 +16,7 @@ function parseHtml(data){
                         //Create Class
                         jsonParse.component[currentElement].class = "";
                         for(let k = 8; k < data.length; k++){
-                            if (data[k + j] !== "\""){
+                            if (data[j + k] !== "\""){
                                 jsonParse.component[currentElement].class += data[j + k];
                             } else {
                                 j += k;
@@ -27,7 +27,7 @@ function parseHtml(data){
                         //Create Class
                         jsonParse.component[currentElement].id = "";
                         for(let k = 5; k < data.length; k++){
-                            if (data[k + j] !== "\""){
+                            if (data[j + k] !== "\""){
                                 jsonParse.component[currentElement].id += data[j + k];
                             } else {
                                 j += k;
@@ -42,13 +42,17 @@ function parseHtml(data){
                     j = data.length;
                 }
             }
-        } else if (j = 0){
-            
-        
-        } else if ((data[i] === "<") && (data[i + 1] === "/") && (jsonParse.component[currentElement].element.includes(data[i + 2]))){
-            console.log("holycrap")
-            console.log(jsonParse)
-            return jsonParse
+        } else {
+            //Create Content
+            jsonParse.component[currentElement].content = "";
+            for(let k = 0; k < data.length; k++){
+                if (!((data[i + k] === "<") && (data[i + k + 1] === "/") && (jsonParse.component[currentElement].element.includes(data[i + k + 2])))){
+                    jsonParse.component[currentElement].content += data[i + k];
+                } else {
+                    i += k;
+                    k = data.length
+                }
+            }
         }
     }
     console.log(jsonParse)
