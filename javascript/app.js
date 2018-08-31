@@ -23,7 +23,17 @@ function parseHtml(data){
                                 k = data.length
                             }
                         }
-                        console.log(j)
+                    } else if ((data[j] === " ") && ((data[j + 1] + data[j + 2]) === "id")){
+                        //Create Class
+                        jsonParse.component[currentElement].id = "";
+                        for(let k = 5; k < data.length; k++){
+                            if (data[k + j] !== "\""){
+                                jsonParse.component[currentElement].id += data[j + k];
+                            } else {
+                                j += k;
+                                k = data.length
+                            }
+                        }
                     } else {
                         jsonParse.component[currentElement].element += data[i + j]
                     }
