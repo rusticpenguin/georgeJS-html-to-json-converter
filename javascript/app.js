@@ -42,7 +42,11 @@ function parseHtml(data){
                     j = data.length;
                 }
             }
-        } else if (data[i] === "<" && data[i + 1] === "/"){
+        } else if (j = 0){
+            
+        
+        } else if ((data[i] === "<") && (data[i + 1] === "/") && (jsonParse.component[currentElement].element.includes(data[i + 2]))){
+            console.log("holycrap")
             console.log(jsonParse)
             return jsonParse
         }
